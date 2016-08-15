@@ -29,7 +29,8 @@ AUTHOR = 'Anirban Roy Das'
 
 EMAIL = 'anirban.nick@gmail.com'
 
-KEYWORDS = ['logie', 'log server', 'amqp', 'rabbitmq', 'tornado', 'asynchronous logging', 'process safe logging', 'centralizd logging']
+KEYWORDS = ['logie', 'log server', 'amqp', 'rabbitmq', 'tornado',
+            'asynchronous logging', 'process safe logging', 'centralizd logging']
 
 CLASSIFIERS = [
 
@@ -71,7 +72,11 @@ PACKAGE_DATA = {
     # data files need to be listed both here (which determines what gets
     # installed) and in MANIFEST.in (which determines what gets included
     # in the sdist tarball)
-
+    "logie": ["static/css/*.css",
+              "static/js/*.js",
+              "templates/*.html",
+              "logie.conf"
+              ],
 }
 
 # DATA_FILES =[]
@@ -99,7 +104,7 @@ setup(
     version=VERSION,
 
     description='It is a centralized log server which can log from any process which uses RabbitMQ and AMQP protocol.',
-    
+
     long_description=LONG_DESCRIPTION,
 
     # The project's main homepage.
