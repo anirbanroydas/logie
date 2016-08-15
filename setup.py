@@ -21,7 +21,7 @@ NAME = "logie"
 VERSION = '1.0'
 
 
-PACKAGES = ["logie", "logie.apps", "logie.apps.main"]
+PACKAGES = ["logie", "logie.apps", "logie.apps.webapp", "logie.apps.logger"]
 
 PROJECT_URL = 'https://github.com/anirbanroydas/logie'
 
@@ -29,7 +29,7 @@ AUTHOR = 'Anirban Roy Das'
 
 EMAIL = 'anirban.nick@gmail.com'
 
-KEYWORDS = ['logie', 'log server', 'amqp', 'rabbitmq', 'tornado', 'asynchronous logging', 'thread safe logging', 'process safe logging', 'centralizd logging']
+KEYWORDS = ['logie', 'log server', 'amqp', 'rabbitmq', 'tornado', 'asynchronous logging', 'process safe logging', 'centralizd logging']
 
 CLASSIFIERS = [
 
@@ -60,8 +60,10 @@ CLASSIFIERS = [
 ]
 
 INSTALL_REQUIRES = ["tornado >= 2.2.1",
-                    "pika",
-                    "setuptools >= 0.7.0", ]
+                    "pika >= 0.10.0",
+                    "setuptools >= 0.7.0",
+                    "msgpack-python >= 0.4.7"
+                    ]
 
 EXTRAS_REQUIRE = {}
 
@@ -96,7 +98,7 @@ setup(
     # https://packaging.python.org/en/latest/single_source_version.html
     version=VERSION,
 
-    description='It is an app to notify users via email as to when to book an uber as per given time to reach a specified destination from a specified source.',
+    description='It is a centralized log server which can log from any process which uses RabbitMQ and AMQP protocol.',
     
     long_description=LONG_DESCRIPTION,
 
