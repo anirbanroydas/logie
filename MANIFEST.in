@@ -5,4 +5,5 @@ include LICENSE
 # include docs
 recursive-include docs *
 
-
+# include logie.conf 
+include logie/logie.conf
