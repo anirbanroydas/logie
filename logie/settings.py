@@ -1,7 +1,38 @@
-import os.path
+# import os.path
+print '[settings.py] Entered Module'
+# path = lambda root, *a: os.path.join(root, *a)
+# ROOT = os.path.dirname(os.path.abspath(__file__))
+print '[settings.py] calling relative import utils'
+from .utils import read_config_file
+print '[settings.py] returned from realteve import utils'
 
-path = lambda root, *a: os.path.join(root, *a)
-ROOT = os.path.dirname(os.path.abspath(__file__))
+
+DEFAULT_APPINFO_APPNAME = 'defaut-logie-app'
+DEFAULT_STORAGE_PATH = '/usr/local/var/run'
+# DEFAULT_APPLOG_PATH = '/usr/local/var/log/logie/logie.log'
+DEFAULT_APPLOG_PATH = 'logie.log'
+DEFAULT_EXCHANGE = 'logie_exchange'
+
+# Universal Default, doesn't depend on conf file 
+EXCHANGE_TYPE = 'topic'
+
+# Universal RabbitMQ PORT 
+DEFAULT_PORT = 5672 
+
+# Essential Defaults
+DEFAULT_LOGLEVELS = 'all'
+DEFAULT_APPINFO_WEBAPP = False 
+# DEFAULT_FILE_SEPARATION = False
+
+# Non-Essential, Not implemented till now Defaults 
+# DEFAULT_APPLOG_TYPE = 'rotating'
+DEFAULT_APPLOG_APPEND = True
+# DEFAULT_STORAGE_TYPE = 'rotating' 
+DEFAULT_STORAGE_APPEND = True
+
+
+# read the data from logie.conf file and read it in Gloabl variable
+CONFIG_DATA = read_config_file()
 
 
 settings = {
@@ -63,13 +94,13 @@ settings = {
 
     # template_path: Directory containing template files.
     # Can be further customized by overriding RequestHandler.get_template_path
-    'template_path': path(ROOT, "templates"),
+    # 'template_path': path(ROOT, "templates"),
 
     # static_path: Directory from which static files will be served.
-    'static_path': path(ROOT, "static"),
+    # 'static_path': path(ROOT, "static"),
 
     # static_url_prefix: Url prefix for static files, defaults to "/static/".
-    'static_url_prefix': '/static/',
+    # 'static_url_prefix': '/static/',
 
     # static_handler_class, static_handler_args:
     # May be set to use a different handler for static files instead of
