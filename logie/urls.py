@@ -1,19 +1,19 @@
 from tornado import web
 from tornado.web import URLSpec as url
-from sockjs.tornado import SockJSRouter
+# from sockjs.tornado import SockJSRouter
 
 from settings import settings
 from utils import include
-from apps.main.views import ChatWebsocketHandler
+# from apps.webapp.views import LogWebsocketHandler
 
 
-# Register SocjJsRouter Connection
-SockjsWebsocketRouter = SockJSRouter(ChatWebsocketHandler, '/chat')
+# # Register SocjJsRouter Connection
+# SockjsWebsocketRouter = SockJSRouter(LogWebsocketHandler, '/log')
 
 urls = [
     url(r"/static/(.*)", web.StaticFileHandler,
         {"path": settings.get('static_path')}),
 ]
-urls += include(r"/", "apps.main.urls")
+urls += include(r"/", "apps.webapp.urls")
 
-urls = urls + SockjsWebsocketRouter.urls
+# urls = urls + SockjsWebsocketRouter.urls
