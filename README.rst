@@ -35,44 +35,25 @@ Check ``logie/LICENSE`` file for full Copyright notice.
 Overview
 ---------
 
-uberNow is a small web app which takes four inputs from the user and notifies the user via email as to when to book an Uber.
+logie is a log server which can be used by any python based program to log in a multiprocessing environment.
 
-All you(the user) have to do is give the 4 required inputs and submit the request. The app will take care of the rest.
-
-The inputs are:
-
-* A. source
-* B. destination
-* C. email address 
-* D. time to reach destination 
-
-
-
-It uses `Tornado <http://www.tornadoweb.org/>`_ as the application server. The web app is created using the `sockjs <https://github.com/sockjs/sockjs-client>`_ protocol. **SockJS** is implemented in many languages, primarily in Javascript to talk to the servers in real time, which tries to create a duplex bi-directional connection between the **Client(browser)** and the **Server**. Ther server should also implement the **sockjs** protocol. Thus using the  `sockjs-tornado <https://github.com/MrJoes/sockjs-tornado>`_ library which exposes the **sockjs** protocol in `Tornado <http://www.tornadoweb.org/>`_ server.
-
-It first tries to create a `Websocket <https://en.wikipedia.org/wiki/WebSocket>`_ connection, and if it fails then it fallbacks to other transport mechanisms, such as **Ajax**, **long polling**, etc. After the connection is established, the tornado server **(sockjs-tornado)** calls `Uber Apis <https://developer.uber.com>`_ and `Google Maps Apis <https://developers.google.com/maps/>`_ to process the requests.
-
+User needs to import logie as a library and call the logger and start logging.
 
 
 
 Technical Specs
 ----------------
 
-
-:sockjs-client (optional): Advanced Websocket Javascript Client used in **webapp example**
 :Tornado: Async Python Web Library + Web Server
-:sockjs-tornado: SockJS websocket server implementation for Tornado
-:Uber Time-Estimation Apis: HTTP Rest APIs to estimate time required to book an uber at given time
-:Google Maps Distance-Matrix Apis: HTTP Rest Apis to calculate distance and duration to reach from source to destination
+:Rabbitmq: AMQP message broker
 
 
 
 Features
 ---------
 
-* Web App 
-* Email Notification
-* Uber Booking Reminder
+* Web App (Added Extra)
+* multiprocessing logging
 
 
 
@@ -85,15 +66,13 @@ Prerequisites
 
 1. python 2.7+
 2. tornado
-3. sockjs-tornado 
-4. sockjs-client (optional, just for example webapp)
 
 
 Install
 ~~~~~~~
 ::
 
-        $ pip install uberNow
+        $ pip install logie
 
 If above dependencies do not get installed by the above command, then use the below steps to install them one by one.
 
@@ -113,10 +92,10 @@ If above dependencies do not get installed by the above command, then use the be
 
          $ pip install tornado
 
- **Step 3 - Install sockjs-tornado**
+ **Step 3 - Configure logie**
  ::
 
-         $ pip install sockjs-tornado
+        ``/usr/local/etc/logie.conf``
 
 
 
@@ -126,32 +105,29 @@ If above dependencies do not get installed by the above command, then use the be
 Usage
 -----
 
-After having installed uberNow, just run the following commands to use it:
+After having installed logie, just run the following commands to use it:
 
 
 * **Start uberNow Applcation**
   ::
 
-          $ uberNow [options]
+          $ logie [options]
 
   - **Options**
 
     :--port: Port number where the uberNow app will start
-    :--log_path: Path where the application will log the details
-
-    **default** : ``/usr/local/var/uberNow/log/uberNow.log``
 
 
   - **Example**
     ::
 
           # Starting the server
-          $ uberNow --port=9191
+          $ logie --port=9191
 
           # Starting the server with custom log path
-          $ uberNow --port=9191 --log_path=projects/ubernow/log/ubernow.log        
+          $ logie --port=9191       
   
-* **Stop uberNow**
+* **Stop logie**
 
 
 
@@ -160,7 +136,7 @@ After having installed uberNow, just run the following commands to use it:
 
 * **More Details** 
 
-  Please follow the documentation for more usage details. Documentation link is `this <http://uberNow.readthedocs.io/en/latest/>`_.
+  Please follow the documentation for more usage details. Documentation link is `this <http://logie.readthedocs.io/en/latest/>`_.
 
 Todo
 -----
